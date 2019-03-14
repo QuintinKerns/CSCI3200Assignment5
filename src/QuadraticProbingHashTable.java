@@ -204,7 +204,19 @@ public class QuadraticProbingHashTable<AnyType>
             isActive = i;
         }
     }
-
+    
+    public void printTable()
+	{
+		for(int i = 0; i < array.length; i++)
+		{
+			if(array[i] != null)
+			{
+				System.out.print("Index "+i+":");
+				System.out.print(array[i]+":expected index:"+myhash((AnyType) array[i]));
+				System.out.println();
+			}
+		}
+	}
     private static final int DEFAULT_TABLE_SIZE = 101;
 
     private HashEntry<AnyType> [ ] array; // The array of elements

@@ -1,6 +1,8 @@
 
 public class Map<KeyType, ValueType> {
-	public Map()
+	public Map() {
+		
+	}
 	
 	public void put(KeyType key, ValueType val)
 	public ValueType get(KeyType key)
