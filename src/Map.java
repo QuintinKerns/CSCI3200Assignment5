@@ -14,12 +14,11 @@ public class Map<KeyType, ValueType> {
 	}
 	
 	public ValueType get(KeyType key) {
-		return items.get(new Entry(key)).value;
+		return (ValueType) items.get(new Entry(key)).value;
 	}
 	
 	public boolean isEmpty() {
-		if (items.size() == 0) return true;
-		else return false;
+		return items.size() == 0 ? true : false;
 	}
 	
 	public void makeEmpty() {
@@ -40,16 +39,30 @@ public class Map<KeyType, ValueType> {
 		
 		KeyType key;
 		ValueType value;
-
-		public boolean equalsKey(KeyType key2) {
-			if (key.hashCode() == key2.hashCode())
-				return true;
-				else return false;
-		}
 		
 		@Override
 		public int hashCode() {
-			return (int) key.hashCode() % 10;
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((key == null) ? 0 : key.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Entry other = (Entry) obj;
+			if (key == null) {
+				if (other.key != null)
+					return false;
+			} else if (!key.equals(other.key))
+				return false;
+			return true;
 		}
 	}
 }
